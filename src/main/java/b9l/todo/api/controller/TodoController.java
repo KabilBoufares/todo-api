@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -41,14 +42,14 @@ public class TodoController {
         
     }
 
-    @PostMapping("{id}")
+    @PutMapping("{id}")
     public Todo update(@PathVariable Long id, @RequestBody Todo todo) {
         var entity = todoRepository.findById(id)
                 .orElseThrow(() -> new TodoNotFoundException(id));
         entity.setTitle(todo.getTitle());
         entity.setDescription(todo.getDescription());
         entity.setCompleted(todo.isCompleted());
-        todoRepository.save(entity);  // check this after the test 
+        todoRepository.save(entity);
         return entity;
     }
 
