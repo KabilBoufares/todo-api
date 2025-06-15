@@ -52,7 +52,7 @@ A robust, production-ready RESTful API for managing Todo items, built with Sprin
 
 1. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/KabilBoufares/todo-api
    cd todo-api
    ```
 
