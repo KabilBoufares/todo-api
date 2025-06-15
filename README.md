@@ -14,7 +14,6 @@ A robust, production-ready RESTful API for managing Todo items, built with Sprin
 - [Configuration](#configuration)
 - [Development & Testing](#development--testing)
 - [Docker & Deployment](#docker--deployment)
-- [License](#license)
 
 ---
 
