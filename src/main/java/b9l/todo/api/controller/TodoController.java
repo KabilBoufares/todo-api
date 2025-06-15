@@ -11,6 +11,7 @@ import b9l.todo.api.exception.TodoNotFoundException;
 import b9l.todo.api.model.Todo;
 import b9l.todo.api.repository.ITodoRepository;
 import b9l.todo.api.validator.ItodoValidator;
+import io.swagger.v3.oas.annotations.Operation;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,16 +31,19 @@ public class TodoController {
     @Autowired
     private ItodoValidator todoValidator;
 
+    @Operation(summary = "Get all todos")
     @GetMapping
     public List<Todo> getAll() {
         return todoRepository.findAll();
     }
-    
+
+    @Operation(summary = "Get todo by id")
     @GetMapping("{id}")
     public Todo getById(@PathVariable Long id) {
         return todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
     }
-    
+
+    @Operation(summary = "Create a new todo")
     @PostMapping
     public Todo create(@RequestBody Todo todo) {
         todoValidator.validate(todo);
@@ -47,6 +51,7 @@ public class TodoController {
         
     }
 
+    @Operation(summary = "Update an existing todo")
     @PutMapping("{id}")
     public Todo update(@PathVariable Long id, @RequestBody Todo todo) {
         todoValidator.validate(todo);
@@ -59,6 +64,7 @@ public class TodoController {
         return entity;
     }
 
+    @Operation(summary = "Delete a todo")
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
         var entity = todoRepository.findById(id)
